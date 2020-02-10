@@ -24,9 +24,18 @@ documentation of their experiences with food.
 
 
 **Application functions:**
-- Add / remove restaurants the user has been to
-- Add / remove menu items the user has tried
+- Add restaurants the user has been to
+- Add menu items the user has tried
 - Add / remove restaurants the user wants to try
 - Rate / review menu items and restaurants based on taste, price, ambiance, etc.
 - Sorts restaurants based on ratings, date, alphabetical, etc. 
+
+##User Story
+- As a user, I want to be able to add a restaurant I have tried to my collection
+- As a user, I want to be able to view a list of restaurants I have been to listed by rating
+- As a user, I want to be able to select a restaurant and give it a rating for taste, price, atmosphere and service
+- As a user, I want to be able to select a restaurant and add a menu item I have tried
+- As a user, I want to be able to add a rating for taste for the menu item
+- As a user, I want to be able to add a restaurant I want to try to another collection
+- As a user, I want to be able to remove a restaurant I don't want to try anymore to the collection. 
 
