@@ -5,8 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
+
 // A writer that can write collection data to a file
 public class Writer {
+    /*
     private PrintWriter printWriter;
 
     // EFFECTS: constructs a writer that will write data to file
@@ -26,4 +28,7 @@ public class Writer {
     public void close() {
         printWriter.close();
     }
+     */
 }
+
+

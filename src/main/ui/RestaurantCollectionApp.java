@@ -2,9 +2,9 @@ package ui;
 
 import model.Restaurant;
 import model.RestaurantCollection;
-import persistence.Reader;
+//import persistence.Reader;
 import persistence.Saveable;
-import persistence.Writer;
+//import persistence.Writer;
 
 import java.io.*;
 import java.util.List;
@@ -24,14 +24,14 @@ public class RestaurantCollectionApp {
         runCollection();
     }
 
-    // MODIFIES: this
-    // EFFECTS: processes user input
+//    // MODIFIES: this
+//    // EFFECTS: processes user input
     private void runCollection() {
         boolean keepGoing = true;
         String command = null;
         input = new Scanner(System.in);
 
-        loadCollections();
+//        loadCollections();
 
         System.out.println("Welcome to your gastronomical journey!");
         while (keepGoing) {
@@ -48,7 +48,7 @@ public class RestaurantCollectionApp {
 
         System.out.println("\nHappy eating! ꒰✩’ω`ૢ✩꒱");
     }
-
+/*
     // MODIFIES: this
     // EFFECTS: loads accounts from COLLECTIONS_FILE, if that file exists;
     // otherwise initializes collections with default values
@@ -62,6 +62,9 @@ public class RestaurantCollectionApp {
         }
     }
 
+ */
+
+/*
     // EFFECTS: saves state of tried restaurants and to-try restaurants to COLLECTIONS_FILE
     private void saveCollections() {
         try {
@@ -77,7 +80,7 @@ public class RestaurantCollectionApp {
             // this is due to a programming error
         }
     }
-
+ */
     // MODIFIES: this
     // EFFECTS: processes user command
     private void processCommand(String command) {

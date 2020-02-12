@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
 // A reader that can read collection data from a file
 public class Reader {
+    /*
     public static final String DELIMITER = ",";
 
     // EFFECTS: returns a list of collections parsed from file; throws
@@ -48,4 +50,8 @@ public class Reader {
     private static RestaurantCollection parseRestaurantCollection(List<String> components) {
         return new RestaurantCollection();
     }
+
+     */
 }
+
+
