@@ -237,7 +237,7 @@ public class RestaurantCollectionApp {
 
         String selection = "";
 
-        while (!(selection.equals("v") || selection.equals("a") || selection.equals("b"))) {
+        while (!(selection.equals("v") || selection.equals("a") || selection.equals("r") || selection.equals("b"))) {
             System.out.println("a ➳ add a restaurant");
             System.out.println("r ➳ remove a restaurant");
             System.out.println("v ➳ view restaurants");
@@ -250,7 +250,7 @@ public class RestaurantCollectionApp {
             toTryViewOptions();
         } else if (selection.equals("a")) {
             addToTryRestaurant();
-        } else if (selected.equals("r")) {
+        } else if (selection.equals("r")) {
             removeToTryRestaurant();
         } else {
             toTryChooseRestaurantToBook();
@@ -262,24 +262,26 @@ public class RestaurantCollectionApp {
     }
 
     private void addToTryRestaurant() {
-        System.out.print("Enter the name of a restaurant you would like to try (underlines for spaces): ");
+        System.out.println("Enter the name of a restaurant you would like to try (underlines for spaces): ");
         String name = input.next();
         Restaurant newRestaurant = new Restaurant(name);
         totry.addRestaurant(newRestaurant);
+        System.out.print(newRestaurant.getRestaurantName() + " has been added to collection");
     }
 
     // REQUIRES: collection must already have restaurants
     // EFFECTS: removes the specified restaurant in the ToTry Collection
     private void removeToTryRestaurant() {
-        System.out.println("Here are the restaurants in your To-try Collection: ");
-        System.out.println(totry.viewAllRestaurants(totry.restaurantList));
+        System.out.print("Here are the restaurants in your To-try Collection: ");
+        System.out.println("\n" + totry.viewAllRestaurants(totry.restaurantList));
         System.out.println("Enter the name of the restaurant you would like to remove (underlines for spaces): ");
         String name = input.next();
         for (Restaurant restaurant : totry.restaurantList) {
             if (restaurant.getRestaurantName().equals(name)) {
-                Restaurant removedRestaurant = restaurant;
-                totry.restaurantList.remove(restaurant);
-                System.out.println(removedRestaurant.getRestaurantName() + " has been removed from collection.");
+                totry.removeRestaurant(restaurant);
+                System.out.println(restaurant.getRestaurantName() + " has been removed from collection.");
+            } else {
+                System.out.println(name + " is not found in the collection");
             }
         }
     }
@@ -305,7 +307,7 @@ public class RestaurantCollectionApp {
                 restaurant.getBooking().setDay(day);
                 restaurant.getBooking().setHour(hour);
                 restaurant.getBooking().setSeats(seats);
-                System.out.println("Booking has been made at " + " " + restaurant.getRestaurantName() + " " + "on "
+                System.out.println("Booking has been made at " + restaurant.getRestaurantName() + " " + "on "
                         + String.valueOf(restaurant.getBooking().getYear()) + "/"
                         + String.valueOf(restaurant.getBooking().getMonth()) + "/"
                         + String.valueOf(restaurant.getBooking().getDay()) + " at time "

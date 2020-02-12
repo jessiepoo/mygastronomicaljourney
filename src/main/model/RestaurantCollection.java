@@ -1,21 +1,16 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-
 
 
 public class RestaurantCollection {
 
     public ArrayList<Restaurant> restaurantList;
 
+    // Constructs a restaurant collection with an empty list of restaurants
     public RestaurantCollection() {
         restaurantList = new ArrayList<Restaurant>();
-    }
-
-    protected ArrayList<Restaurant> getRestaurantList() {
-        return restaurantList;
     }
 
     // EFFECTS: Adds a restaurant to the restaurant list
@@ -26,10 +21,8 @@ public class RestaurantCollection {
     // REQUIRES: restaurantList is a non-empty list
     // MODIFIES: this
     // EFFECTS: removes a restaurant from the list of restaurants
-    protected final void removeRestaurant(Restaurant restaurant) {
-        if (restaurantList.contains(restaurant)) {
-            restaurantList.remove(restaurant);
-        }
+    public final void removeRestaurant(Restaurant restaurant) {
+        restaurantList.remove(restaurant);
     }
 
     // EFFECTS: Returns the list of restaurants sorted by taste

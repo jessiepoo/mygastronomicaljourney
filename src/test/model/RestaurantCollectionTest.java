@@ -43,6 +43,20 @@ class RestaurantCollectionTest {
         assertEquals(0, testCollection.restaurantList.size());
     }
 
+    @Test
+    void testAddRestaurant() {
+        testCollection.addRestaurant(miku);
+        assertEquals(1, testCollection.restaurantList.size());
+        assertEquals(miku, testCollection.restaurantList.get(0));
+    }
+
+    @Test
+    void testRemoveRestaurant() {
+        testCollection.addRestaurant(miku);
+        assertEquals(1, testCollection.restaurantList.size());
+        testCollection.removeRestaurant(miku);
+        assertEquals(0, testCollection.restaurantList.size());
+    }
 
     @Test
     void testGetSortedRestaurantsByTaste() {
