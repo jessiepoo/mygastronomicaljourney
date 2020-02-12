@@ -96,8 +96,8 @@ public class RestaurantCollectionApp {
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("\n Select from:");
-        System.out.println("\t1 ➳ restaurants you have tried");
-        System.out.println("\t2 ➳ restaurants you would like to try");
+        System.out.println("\t1 ➳ access collection of tried restaurants");
+        System.out.println("\t2 ➳ access collection of restaurants to try");
         System.out.println("\t3 ➳ quit application");
     }
 
@@ -203,7 +203,6 @@ public class RestaurantCollectionApp {
         }
     }
 
-
     public void toTryOptionSelected() {
         RestaurantCollection selected = totry;
 
@@ -248,14 +247,17 @@ public class RestaurantCollectionApp {
         System.out.println("\n" + totry.viewAllRestaurants(totry.restaurantList));
         System.out.println("Enter the name of the restaurant you would like to remove (underlines for spaces): ");
         String name = input.next();
+
+        Restaurant removedRestaurant = null;
         for (Restaurant restaurant : totry.restaurantList) {
             if (restaurant.getRestaurantName().equals(name)) {
-                totry.removeRestaurant(restaurant);
-                System.out.println(restaurant.getRestaurantName() + " has been removed from collection.");
+                removedRestaurant = restaurant;
+                System.out.println(removedRestaurant.getRestaurantName() + " has been removed from collection.");
             } else {
                 System.out.println(name + " is not found in the collection");
             }
         }
+        totry.restaurantList.remove(removedRestaurant);
     }
 
     private void toTryChooseRestaurantToBook() {

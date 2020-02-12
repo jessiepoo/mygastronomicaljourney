@@ -90,8 +90,8 @@ public class Restaurant {
     public static Comparator<Restaurant> tasteComparator = new Comparator<Restaurant>() {
         @Override
         public int compare(Restaurant restaurant1, Restaurant restaurant2) {
-            return (restaurant1.getTasteRating() < restaurant2.getTasteRating() ? -1 :
-                    (restaurant2.getTasteRating() == restaurant1.getTasteRating() ? 0 : 1));
+            return (restaurant1.getTasteRating() < restaurant2.getTasteRating() ?  1 :
+                    (restaurant2.getTasteRating() == restaurant1.getTasteRating() ? 0 : -1));
         }
     };
 
@@ -99,8 +99,8 @@ public class Restaurant {
     public static Comparator<Restaurant> priceComparator = new Comparator<Restaurant>() {
         @Override
         public int compare(Restaurant restaurant1, Restaurant restaurant2) {
-            return (restaurant1.getPriceRating() < restaurant2.getPriceRating() ? -1 :
-                    (restaurant2.getPriceRating() == restaurant1.getPriceRating() ? 0 : 1));
+            return (restaurant1.getPriceRating() < restaurant2.getPriceRating() ? 1 :
+                    (restaurant2.getPriceRating() == restaurant1.getPriceRating() ? 0 : -1));
         }
     };
 
@@ -108,16 +108,16 @@ public class Restaurant {
     public static Comparator<Restaurant> serviceComparator = new Comparator<Restaurant>() {
         @Override
         public int compare(Restaurant restaurant1, Restaurant restaurant2) {
-            return (restaurant1.getServiceRating() < restaurant2.getServiceRating() ? -1 :
-                    (restaurant2.getServiceRating() == restaurant1.getServiceRating() ? 0 : 1));
+            return (restaurant1.getServiceRating() < restaurant2.getServiceRating() ? 1 :
+                    (restaurant2.getServiceRating() == restaurant1.getServiceRating() ? 0 : -1));
         }
     };
 
     public static Comparator<Restaurant> overallComparator = new Comparator<Restaurant>() {
         @Override
         public int compare(Restaurant restaurant1, Restaurant restaurant2) {
-            return (restaurant1.getOverallRating() < restaurant2.getOverallRating() ? -1 :
-                    (restaurant2.getOverallRating() == restaurant1.getOverallRating() ? 0 : 1));
+            return (restaurant1.getOverallRating() < restaurant2.getOverallRating() ? 1 :
+                    (restaurant2.getOverallRating() == restaurant1.getOverallRating() ? 0 : -1));
         }
 
     };
