@@ -2,12 +2,6 @@ package ui;
 
 import model.Restaurant;
 import model.RestaurantCollection;
-//import persistence.Reader;
-import persistence.Saveable;
-//import persistence.Writer;
-
-import java.io.*;
-import java.util.List;
 import java.util.Scanner;
 
 

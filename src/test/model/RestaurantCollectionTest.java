@@ -184,7 +184,7 @@ class RestaurantCollectionTest {
         miku.rateService(4.1);
         miku.rateTaste(4.7);
         miku.ratePrice(2.2);
-        assertEquals(((4.1+4.7+2.2)/3), miku.getOverallRating());
+        assertEquals(((4.1+4.7+2.2)/3), haiDiLao.getOverallRating());
 
         ArrayList<Restaurant> sortedList = testCollection.getSortedRestaurantOverall();
         assertEquals(miku, sortedList.get(0));
