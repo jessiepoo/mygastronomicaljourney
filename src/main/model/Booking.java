@@ -42,6 +42,16 @@ public class Booking {
         this.seats = seats;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets all the values of the booking
+    public void setAll(int year, int month, int day, int hour, int seats) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this. hour = hour;
+        this.seats = seats;
+    }
+
     // EFFECTS: returns the year of booking
     public int getYear() {
         return year;

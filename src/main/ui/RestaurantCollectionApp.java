@@ -7,7 +7,6 @@ import persistence.Saveable;
 import persistence.Writer;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -129,31 +128,18 @@ public class RestaurantCollectionApp {
         String name = input.next();
         Restaurant newRestaurant = new Restaurant(name);
         tried.addRestaurant(newRestaurant);
-
-        System.out.print("　" +
-                "∧＿∧\n" +
-                "（｡･ω･｡)つ━☆・*。\n" +
-                "⊂　　 ノ 　　　・゜+.\n" +
-                "しーＪ　　　°。+ *´¨)\n" +
-                "Give a star rating out of 5 for taste: ");
+        System.out.print("　"
+                + "  ∧＿∧\n"
+                + "（｡･ω･｡)つ━☆・*。\n"
+                + "⊂　　 ノ 　　　・゜+.\n"
+                + "しーＪ　　　°。+ *´¨)\n"
+                + "Give a star rating out of 5 for taste: ");
         double tasteRating = Double.parseDouble(input.next());
         newRestaurant.rateTaste(tasteRating);
-
-        System.out.print("　" +
-                "∧＿∧\n" +
-                "（｡･ω･｡)つ━☆・*。\n" +
-                "⊂　　 ノ 　　　・゜+.\n" +
-                "しーＪ　　　°。+ *´¨)\n" +
-                "Give a star rating out of 5 for price: ");
+        System.out.print("Give a star rating out of 5 for price: ");
         double priceRating = Double.parseDouble(input.next());
         newRestaurant.ratePrice(priceRating);
-
-        System.out.print("　" +
-                "∧＿∧\n" +
-                "（｡･ω･｡)つ━☆・*。\n" +
-                "⊂　　 ノ 　　　・゜+.\n" +
-                "しーＪ　　　°。+ *´¨)\n" +
-                "Give a star rating out of 5 for service: ");
+        System.out.print("Give a star rating out of 5 for service: ");
         double serviceRating = Double.parseDouble(input.next());
         newRestaurant.rateService(serviceRating);
         System.out.println(newRestaurant.getRestaurantName() + " has been added to this collection.");
@@ -161,42 +147,36 @@ public class RestaurantCollectionApp {
 
     private void chooseViewOptions() {
         String selection = "";
-
-        while (!(selection.equals("n") ||
-                selection.equals("o") ||
-                selection.equals("t") ||
-                selection.equals("p") ||
-                selection.equals("s"))) {
-            System.out.println("n ➳ view by name");
-            System.out.println("o ➳ view by overall rating");
-            System.out.println("t ➳ view by taste rating");
-            System.out.println("p ➳ view by price rating");
-            System.out.println("s ➳ view by service rating");
+        while (!(selection.equals("n") || selection.equals("o") || selection.equals("t") || selection.equals("p")
+                || selection.equals("s"))) {
+            printChooseViewOptions();
             selection = input.next();
             selection = selection.toLowerCase();
         }
-
         if (selection.equals("n")) {
-            ArrayList<Restaurant> restaurantsByName = tried.getSortedRestaurantsByName();
-            System.out.println(tried.viewAllRestaurants(restaurantsByName));
+            System.out.println(tried.viewAllRestaurants(tried.getSortedRestaurantsByName()));
         }
         if (selection.equals("o")) {
-            ArrayList<Restaurant> restaurantsByOverall = tried.getSortedRestaurantOverall();
-            System.out.println(tried.viewAllRestaurants(restaurantsByOverall));
+            System.out.println(tried.viewAllRestaurants(tried.getSortedRestaurantOverall()));
         }
         if (selection.equals("t")) {
-            ArrayList<Restaurant> restaurantsByTaste = tried.getSortedRestaurantsByTaste();
-            System.out.println(tried.viewAllRestaurants(restaurantsByTaste));
+            System.out.println(tried.viewAllRestaurants(tried.getSortedRestaurantsByTaste()));
         }
         if (selection.equals("p")) {
-            ArrayList<Restaurant> restaurantsByPrice = tried.getSortedRestaurantsByPrice();
-            System.out.println((tried.viewAllRestaurants(restaurantsByPrice)));
+            System.out.println((tried.viewAllRestaurants(tried.getSortedRestaurantsByPrice())));
         }
         if (selection.equals("s")) {
-            ArrayList<Restaurant> restaurantsByService = tried.getSortedRestaurantsByService();
-            System.out.println(tried.viewAllRestaurants(restaurantsByService));
+            System.out.println(tried.viewAllRestaurants(tried.getSortedRestaurantsByService()));
         }
+    }
 
+
+    private void printChooseViewOptions() {
+        System.out.println("n ➳ view by name");
+        System.out.println("o ➳ view by overall rating");
+        System.out.println("t ➳ view by taste rating");
+        System.out.println("p ➳ view by price rating");
+        System.out.println("s ➳ view by service rating");
     }
 
     private void chooseRestaurantToBook() {
@@ -215,18 +195,10 @@ public class RestaurantCollectionApp {
                 int hour = Integer.parseInt(input.next());
                 System.out.println("Enter the number of seats you would like to book: ");
                 int seats = Integer.parseInt(input.next());
-                restaurant.getBooking().setYear(year);
-                restaurant.getBooking().setMonth(month);
-                restaurant.getBooking().setDay(day);
-                restaurant.getBooking().setHour(hour);
-                restaurant.getBooking().setSeats(seats);
-                System.out.println("Booking has been made at " + restaurant.getRestaurantName() + " " + "on "
-                        + String.valueOf(restaurant.getBooking().getYear()) + "/"
-                        + String.valueOf(restaurant.getBooking().getMonth()) + "/"
-                        + String.valueOf(restaurant.getBooking().getDay()) + " at time "
-                        + String.valueOf(restaurant.getBooking().getHour()) + " for "
-                        + String.valueOf(restaurant.getBooking().getSeats()) + " people.");
-
+                restaurant.getBooking().setAll(year, month, day, hour, seats);
+                printBookingConfirmation(restaurant.getRestaurantName(), restaurant.getBooking().getYear(),
+                        restaurant.getBooking().getMonth(), restaurant.getBooking().getDay(),
+                        restaurant.getBooking().getHour(), restaurant.getBooking().getSeats());
             }
         }
     }
@@ -302,19 +274,21 @@ public class RestaurantCollectionApp {
                 int hour = Integer.parseInt(input.next());
                 System.out.println("Enter the number of seats you would like to book: ");
                 int seats = Integer.parseInt(input.next());
-                restaurant.getBooking().setYear(year);
-                restaurant.getBooking().setMonth(month);
-                restaurant.getBooking().setDay(day);
-                restaurant.getBooking().setHour(hour);
-                restaurant.getBooking().setSeats(seats);
-                System.out.println("Booking has been made at " + restaurant.getRestaurantName() + " " + "on "
-                        + String.valueOf(restaurant.getBooking().getYear()) + "/"
-                        + String.valueOf(restaurant.getBooking().getMonth()) + "/"
-                        + String.valueOf(restaurant.getBooking().getDay()) + " at time "
-                        + String.valueOf(restaurant.getBooking().getHour()) + " for "
-                        + String.valueOf(restaurant.getBooking().getSeats()) + " people.");
+                restaurant.getBooking().setAll(year, month, day, hour, seats);
+                printBookingConfirmation(restaurant.getRestaurantName(), restaurant.getBooking().getYear(),
+                        restaurant.getBooking().getMonth(), restaurant.getBooking().getDay(),
+                        restaurant.getBooking().getHour(), restaurant.getBooking().getSeats());
             }
         }
+    }
+
+    private void printBookingConfirmation(String name, int year, int month, int day, int hour, int seats) {
+        System.out.println("Booking has been made at " + name + " " + "on "
+                + String.valueOf(year) + "/"
+                + String.valueOf(month) + "/"
+                + String.valueOf(day) + " at time "
+                + String.valueOf(hour) + " for "
+                + String.valueOf(seats) + " people.");
     }
 }
 
