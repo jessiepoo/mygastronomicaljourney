@@ -11,6 +11,7 @@ public class BookingTest {
     @BeforeEach
     void runBefore() {
         testBooking = new Booking();
+        testBooking.setAll(2000,1,8,12,5);
     }
 
     @Test
@@ -19,62 +20,36 @@ public class BookingTest {
     }
 
     @Test
-    void testSetYear() {
-        testBooking.setYear(2000);
+    void testSetAll() {
         assertEquals(2000, testBooking.getYear());
-    }
-
-    @Test
-    void testSetMonth() {
-        testBooking.setMonth(1);
         assertEquals(1, testBooking.getMonth());
-    }
-
-    @Test
-    void testSetDay() {
-        testBooking.setDay(8);
         assertEquals(8, testBooking.getDay());
-    }
-
-    @Test
-    void testSetHour() {
-        testBooking.setHour(12);
         assertEquals(12, testBooking.getHour());
-    }
-
-    @Test
-    void testSetSeats() {
-        testBooking.setSeats(5);
         assertEquals(5, testBooking.getSeats());
     }
 
     @Test
     void testGetYear() {
-        testBooking.setYear(2000);
         assertEquals(2000, testBooking.getYear());
     }
 
     @Test
     void testGetMonth() {
-        testBooking.setMonth(1);
         assertEquals(1, testBooking.getMonth());
     }
 
     @Test
     void testGetDay() {
-        testBooking.setDay(8);
         assertEquals(8, testBooking.getDay());
     }
 
     @Test
     void testGetHour() {
-        testBooking.setHour(12);
         assertEquals(12, testBooking.getHour());
     }
 
     @Test
     void testGetSeats() {
-        testBooking.setSeats(5);
         assertEquals(5, testBooking.getSeats());
     }
 

@@ -12,35 +12,6 @@ public class Booking {
         isBooked = false;
     }
 
-    // MODIFIES: this
-    // EFFECTS: sets the year of booking
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sets the month of booking
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sets the day of booking
-    public void setDay(int day) {
-        this.day = day;
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sets the hour of booking
-    public void setHour(int hour) {
-        this.hour = hour;
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sets the number of seats of booking
-    public void setSeats(int seats) {
-        this.seats = seats;
-    }
 
     // MODIFIES: this
     // EFFECTS: sets all the values of the booking
