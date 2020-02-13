@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+// A restaurant that has a certain rating for taste, price and service and where bookings can be made.
 public class Restaurant {
 
     private String restaurantName;

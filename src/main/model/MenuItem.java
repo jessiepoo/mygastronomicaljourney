@@ -1,5 +1,6 @@
 package model;
 
+// A menu item that a restaurant offers, including a name, price, and rating.
 public class MenuItem {
 
     private String itemName;

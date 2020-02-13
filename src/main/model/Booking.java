@@ -1,5 +1,6 @@
 package model;
 
+// A booking which can be made for a restaurant including the time, and confirmation.
 public class Booking {
     private int year;
     private int month;

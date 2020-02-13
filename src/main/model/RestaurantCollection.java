@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
+// A collection of restaurants that can be sorted according to the restaurants rating
 public class RestaurantCollection {
 
     public ArrayList<Restaurant> restaurantList;
