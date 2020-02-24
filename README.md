@@ -36,6 +36,8 @@ documentation of their experiences with food.
 - As a user, I want to be able to view the list of restaurants in the specified collection sorted by taste, price,
   service and overall (average of the 3 fields) rating.
 - As a user, I want to be able to select a restaurant and add a booking for the restaurant.
+- As a user, I want to be able to save my restaurant collection list to file.
+- As a user, I want to be able to optionally load my restaurant collection from file when the problem starts.
 
 
 
