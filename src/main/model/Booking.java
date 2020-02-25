@@ -11,6 +11,11 @@ public class Booking {
 
     public Booking() {
         isBooked = false;
+        year = 0;
+        month = 0;
+        day = 0;
+        hour = 0;
+        seats = 0;
     }
 
 
@@ -52,6 +57,12 @@ public class Booking {
     // EFFECTS: returns true if booking is booked, false if not
     public boolean getIsBooked() {
         return isBooked;
+    }
+
+    // MODIFIES this
+    // EFFECTS: sets value of isBooked
+    public void setIsBooked(boolean b) {
+        isBooked = b;
     }
 
     // MODIFIES: this

@@ -1,10 +1,14 @@
 package model;
 
+import persistence.Reader;
+import persistence.Saveable;
+
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
 // A collection of restaurants that can be sorted according to the restaurants rating
-public class RestaurantCollection {
+public class RestaurantCollection implements Saveable {
 
     public ArrayList<Restaurant> restaurantList;
 
@@ -57,6 +61,32 @@ public class RestaurantCollection {
 
         }
         return allRestaurants;
+    }
+
+    @Override
+    public void save(PrintWriter printWriter) {
+        for (Restaurant r : restaurantList) {
+            printWriter.print(r.getRestaurantName());
+            printWriter.print(Reader.DELIMITER);
+            printWriter.print(r.getTasteRating());
+            printWriter.print(Reader.DELIMITER);
+            printWriter.print(r.getPriceRating());
+            printWriter.print(Reader.DELIMITER);
+            printWriter.print(r.getServiceRating());
+            printWriter.print(Reader.DELIMITER);
+            printWriter.print(r.getBooking().getIsBooked());
+            printWriter.print(Reader.DELIMITER);
+            printWriter.print(r.getBooking().getSeats());
+            printWriter.print(Reader.DELIMITER);
+            printWriter.print(r.getBooking().getYear());
+            printWriter.print(Reader.DELIMITER);
+            printWriter.print(r.getBooking().getMonth());
+            printWriter.print(Reader.DELIMITER);
+            printWriter.print(r.getBooking().getDay());
+            printWriter.print(Reader.DELIMITER);
+            printWriter.println(r.getBooking().getHour());
+
+        }
     }
 }
 

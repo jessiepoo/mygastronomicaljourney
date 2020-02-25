@@ -2,14 +2,23 @@ package ui;
 
 import model.Restaurant;
 import model.RestaurantCollection;
+import persistence.Reader;
+import persistence.Writer;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
 // Restaurant collection application
 public class RestaurantCollectionApp {
-
+    private static final String TRIED_FILE = "./data/triedCollection.txt";
+    private static final String TO_TRY_FILE = "./data/toTryCollection.txt";
     private RestaurantCollection tried;
-    private RestaurantCollection totry;
+    private RestaurantCollection toTry;
     private Scanner input;
 
     // EFFECTS: runs the collection application
@@ -23,7 +32,8 @@ public class RestaurantCollectionApp {
         boolean keepGoing = true;
         String command = null;
         input = new Scanner(System.in);
-        init();
+
+        loadRestaurants();
 
         System.out.println("Welcome to your gastronomical journey!");
         while (keepGoing) {
@@ -31,7 +41,7 @@ public class RestaurantCollectionApp {
             command = input.next();
             command = command.toLowerCase();
 
-            if (command.equals("3")) {
+            if (command.equals("4")) {
                 keepGoing = false;
             } else {
                 processCommand(command);
@@ -42,19 +52,58 @@ public class RestaurantCollectionApp {
     }
 
     // MODIFIES: this
+    // EFFECTS: loads restaurants from TRIED_FILE and TO_TRY_FILE, if those file exists
+    // otherwise initializes accounts with default values
+    private void loadRestaurants() {
+        try {
+            tried = new RestaurantCollection();
+            toTry = new RestaurantCollection();
+            ArrayList<Restaurant> triedRestaurants = Reader.readRestaurants(new File(TRIED_FILE));
+            ArrayList<Restaurant> toTryRestaurants = Reader.readRestaurants(new File(TO_TRY_FILE));
+            tried.restaurantList = triedRestaurants;
+            toTry.restaurantList = toTryRestaurants;
+        } catch (IOException e) {
+            init();
+        }
+    }
+
+    // EFFECTS: saves state of restaurants to TRIED_FILE and TO_TRY_FILE
+    private void saveRestaurants() {
+        try {
+            Writer triedWriter = new Writer(new File(TRIED_FILE));
+            triedWriter.write(tried);
+            triedWriter.close();
+
+            Writer toTryWriter = new Writer(new File(TO_TRY_FILE));
+            toTryWriter.write(toTry);
+            toTryWriter.close();
+            System.out.println("Restaurants saved to files " + TRIED_FILE + " and " + TO_TRY_FILE);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to save accounts to file " + TRIED_FILE + " and " + TO_TRY_FILE);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // MODIFIES: this
     // EFFECTS: processes user command
     private void processCommand(String command) {
         if (command.equals("1")) {
             triedOptionSelected();
         } else if (command.equals("2")) {
             toTryOptionSelected();
+        } else if (command.equals("3")) {
+            saveRestaurants();
+        } else {
+            System.out.println("Sorry, that is not an option...");
         }
     }
 
     // EFFECTS; initializes the tried collection and the to-try collection.
     private void init() {
         tried = new RestaurantCollection();
-        totry = new RestaurantCollection();
+        toTry = new RestaurantCollection();
     }
 
     // EFFECTS: displays menu of options to user
@@ -62,7 +111,8 @@ public class RestaurantCollectionApp {
         System.out.println("\n Select from:");
         System.out.println("\t1 ➳ collection of tried restaurants");
         System.out.println("\t2 ➳ collection of to-try collections");
-        System.out.println("\t3 ➳ quit application");
+        System.out.println("\t3 ➳ save collections");
+        System.out.println("\t4 ➳ quit application");
     }
 
     // REQUIRES: tried option must be selected
@@ -203,7 +253,7 @@ public class RestaurantCollectionApp {
 
     // EFFECTS: displays the to try collection restaurant list to the user
     private void toTryViewOptions() {
-        System.out.println(totry.viewAllRestaurants(totry.restaurantList));
+        System.out.println(toTry.viewAllRestaurants(toTry.restaurantList));
     }
 
     // MODIFIES: totry
@@ -212,7 +262,7 @@ public class RestaurantCollectionApp {
         System.out.println("Enter the name of a restaurant you would like to try (underlines for spaces): ");
         String name = input.next();
         Restaurant newRestaurant = new Restaurant(name);
-        totry.addRestaurant(newRestaurant);
+        toTry.addRestaurant(newRestaurant);
         System.out.print(newRestaurant.getRestaurantName() + " has been added to collection");
     }
 
@@ -221,12 +271,12 @@ public class RestaurantCollectionApp {
     // EFFECTS: removes the specified restaurant in the ToTry Collection
     private void removeToTryRestaurant() {
         System.out.print("Here are the restaurants in your To-try Collection: ");
-        System.out.println("\n" + totry.viewAllRestaurants(totry.restaurantList));
+        System.out.println("\n" + toTry.viewAllRestaurants(toTry.restaurantList));
         System.out.println("Enter the name of the restaurant you would like to remove (underlines for spaces): ");
         String name = input.next();
 
         Restaurant removedRestaurant = null;
-        for (Restaurant restaurant : totry.restaurantList) {
+        for (Restaurant restaurant : toTry.restaurantList) {
             if (restaurant.getRestaurantName().equals(name)) {
                 removedRestaurant = restaurant;
                 System.out.println(removedRestaurant.getRestaurantName() + " has been removed from collection.");
@@ -234,16 +284,16 @@ public class RestaurantCollectionApp {
                 System.out.println(name + " is not found in the collection");
             }
         }
-        totry.restaurantList.remove(removedRestaurant);
+        toTry.restaurantList.remove(removedRestaurant);
     }
 
     // MODIFIES: totry
     // EFFECTS: creates a booking for the specified restaurant
     private void toTryChooseRestaurantToBook() {
         System.out.println("Enter the name of the restaurant you would like to book!");
-        System.out.println(totry.viewAllRestaurants(totry.restaurantList));
+        System.out.println(toTry.viewAllRestaurants(toTry.restaurantList));
         String name = input.next();
-        for (Restaurant restaurant : totry.restaurantList) {
+        for (Restaurant restaurant : toTry.restaurantList) {
             if (restaurant.getRestaurantName().equals(name)) {
                 System.out.println("Enter the year you would like to book on: ");
                 int year = Integer.parseInt(input.next());
