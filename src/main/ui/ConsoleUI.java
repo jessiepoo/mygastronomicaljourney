@@ -14,15 +14,16 @@ import java.util.Scanner;
 
 
 // Restaurant collection application
-public class RestaurantCollectionApp {
+public class ConsoleUI {
     private static final String TRIED_FILE = "./data/triedCollection.txt";
     private static final String TO_TRY_FILE = "./data/toTryCollection.txt";
     private RestaurantCollection tried;
     private RestaurantCollection toTry;
     private Scanner input;
+    private GraphicalUI frame;
 
     // EFFECTS: runs the collection application
-    public RestaurantCollectionApp() {
+    public ConsoleUI() {
         runCollection();
     }
 
@@ -51,10 +52,12 @@ public class RestaurantCollectionApp {
         System.out.println("\nHappy eating! ꒰✩’ω`ૢ✩꒱");
     }
 
+
+
     // MODIFIES: this
     // EFFECTS: loads restaurants from TRIED_FILE and TO_TRY_FILE, if those file exists
     // otherwise initializes accounts with default values
-    private void loadRestaurants() {
+    void loadRestaurants() {
         try {
             tried = new RestaurantCollection();
             toTry = new RestaurantCollection();
