@@ -1,1 +1,2 @@
 New_Mandarin,4.8,3.6,2.9,true,2,2020,2,14,18
+Sushi_Mura,5.0,5.0,5.0,false,0,0,0,0,0
