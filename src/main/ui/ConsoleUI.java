@@ -15,15 +15,16 @@ import java.util.Scanner;
 
 // Restaurant collection application
 public class ConsoleUI {
+    RestaurantCollectionApp myApp;
     private static final String TRIED_FILE = "./data/triedCollection.txt";
     private static final String TO_TRY_FILE = "./data/toTryCollection.txt";
     private RestaurantCollection tried;
     private RestaurantCollection toTry;
     private Scanner input;
-    private GraphicalUI frame;
 
     // EFFECTS: runs the collection application
     public ConsoleUI() {
+        myApp = new RestaurantCollectionApp();
         runCollection();
     }
 
@@ -33,8 +34,6 @@ public class ConsoleUI {
         boolean keepGoing = true;
         String command = null;
         input = new Scanner(System.in);
-
-        loadRestaurants();
 
         System.out.println("Welcome to your gastronomical journey!");
         while (keepGoing) {
@@ -57,37 +56,37 @@ public class ConsoleUI {
     // MODIFIES: this
     // EFFECTS: loads restaurants from TRIED_FILE and TO_TRY_FILE, if those file exists
     // otherwise initializes accounts with default values
-    void loadRestaurants() {
-        try {
-            tried = new RestaurantCollection();
-            toTry = new RestaurantCollection();
-            ArrayList<Restaurant> triedRestaurants = Reader.readRestaurants(new File(TRIED_FILE));
-            ArrayList<Restaurant> toTryRestaurants = Reader.readRestaurants(new File(TO_TRY_FILE));
-            tried.restaurantList = triedRestaurants;
-            toTry.restaurantList = toTryRestaurants;
-        } catch (IOException e) {
-            init();
-        }
-    }
+//    void loadRestaurants() {
+//        try {
+//            tried = new RestaurantCollection();
+//            toTry = new RestaurantCollection();
+//            ArrayList<Restaurant> triedRestaurants = Reader.readRestaurants(new File(TRIED_FILE));
+//            ArrayList<Restaurant> toTryRestaurants = Reader.readRestaurants(new File(TO_TRY_FILE));
+//            tried.restaurantList = triedRestaurants;
+//            toTry.restaurantList = toTryRestaurants;
+//        } catch (IOException e) {
+//            init();
+//        }
+//    }
 
-    // EFFECTS: saves state of restaurants to TRIED_FILE and TO_TRY_FILE
-    private void saveRestaurants() {
-        try {
-            Writer triedWriter = new Writer(new File(TRIED_FILE));
-            triedWriter.write(tried);
-            triedWriter.close();
-
-            Writer toTryWriter = new Writer(new File(TO_TRY_FILE));
-            toTryWriter.write(toTry);
-            toTryWriter.close();
-            System.out.println("Restaurants saved to files " + TRIED_FILE + " and " + TO_TRY_FILE);
-
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to save accounts to file " + TRIED_FILE + " and " + TO_TRY_FILE);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-    }
+//    // EFFECTS: saves state of restaurants to TRIED_FILE and TO_TRY_FILE
+//    private void saveRestaurants() {
+//        try {
+//            Writer triedWriter = new Writer(new File(TRIED_FILE));
+//            triedWriter.write(tried);
+//            triedWriter.close();
+//
+//            Writer toTryWriter = new Writer(new File(TO_TRY_FILE));
+//            toTryWriter.write(toTry);
+//            toTryWriter.close();
+//            System.out.println("Restaurants saved to files " + TRIED_FILE + " and " + TO_TRY_FILE);
+//
+//        } catch (FileNotFoundException e) {
+//            System.out.println("Unable to save accounts to file " + TRIED_FILE + " and " + TO_TRY_FILE);
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     // MODIFIES: this
     // EFFECTS: processes user command
@@ -97,17 +96,17 @@ public class ConsoleUI {
         } else if (command.equals("2")) {
             toTryOptionSelected();
         } else if (command.equals("3")) {
-            saveRestaurants();
+            myApp.saveRestaurants();
         } else {
             System.out.println("Sorry, that is not an option...");
         }
     }
 
-    // EFFECTS; initializes the tried collection and the to-try collection.
-    private void init() {
-        tried = new RestaurantCollection();
-        toTry = new RestaurantCollection();
-    }
+//    // EFFECTS; initializes the tried collection and the to-try collection.
+//    private void init() {
+//        tried = new RestaurantCollection();
+//        toTry = new RestaurantCollection();
+//    }
 
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
