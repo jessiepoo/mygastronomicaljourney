@@ -260,7 +260,7 @@ public class ConsoleUI {
 
     // MODIFIES: totry
     // EFFECTS: adds a restaurant to the to try restaurant list
-    private void addToTryRestaurant() {
+    void addToTryRestaurant() {
         System.out.println("Enter the name of a restaurant you would like to try (underlines for spaces): ");
         String name = input.next();
         Restaurant newRestaurant = new Restaurant(name);

@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class RestaurantCollectionApp {
     private static final String TRIED_FILE = "./data/triedCollection.txt";
     private static final String TO_TRY_FILE = "./data/toTryCollection.txt";
-    private RestaurantCollection tried;
-    private RestaurantCollection toTry;
+    protected RestaurantCollection tried;
+    protected RestaurantCollection toTry;
 
 
     public RestaurantCollectionApp() {
@@ -62,4 +62,29 @@ public class RestaurantCollectionApp {
             e.printStackTrace();
         }
     }
+
+    protected void addTriedRestaurant(String name, double tasteRating, double priceRating, double serviceRating) {
+        System.out.print("Enter the name of restaurant (underlines for spaces): ");
+        Restaurant newRestaurant = new Restaurant(name);
+        tried.addRestaurant(newRestaurant);
+        System.out.print("　"
+                + " ∧＿∧\n"
+                + "（｡･ω･｡)つ━☆・*。\n"
+                + "⊂　　 ノ 　　　・゜+.\n"
+                + "しーＪ　　　°。+ *´¨)\n"
+                + "Give a star rating out of 5 for taste: ");
+        newRestaurant.rateTaste(tasteRating);
+        System.out.print("Give a star rating out of 5 for price: ");
+        newRestaurant.ratePrice(priceRating);
+        System.out.print("Give a star rating out of 5 for service: ");
+        newRestaurant.rateService(serviceRating);
+        System.out.println(newRestaurant.getRestaurantName() + " has been added to this collection.");
+    }
+
+    void addToTryRestaurant(String name) {
+        Restaurant newRestaurant = new Restaurant(name);
+        toTry.addRestaurant(newRestaurant);
+    }
+
+
 }
