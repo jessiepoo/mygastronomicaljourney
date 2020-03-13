@@ -325,5 +325,6 @@ public class ConsoleUI {
                 + String.valueOf(hour) + " for "
                 + String.valueOf(seats) + " people.");
     }
+
 }
 
