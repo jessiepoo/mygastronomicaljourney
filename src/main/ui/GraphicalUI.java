@@ -90,15 +90,16 @@ public class GraphicalUI {
     public void displayChooseFromTriedOptions(JFrame jframe) {
         //     chooseCollectionLabel.setVisible(false);
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(5, 0));
+        panel.setLayout(new GridLayout(6, 0));
         JLabel triedRestaurantTitle = new JLabel("Restaurants You Have Tried");
         triedRestaurantTitle.setHorizontalAlignment(JLabel.CENTER);
         JButton addRestaurantButton = new JButton("Add a restaurant to this collection");
         JButton viewRestaurantsButton = new JButton("View restaurants in this collection");
         JButton makeBookingButton = new JButton("Make a booking for a restaurant");
+        JButton saveButton = new JButton("Save");
         JButton backButton = new JButton("Back");
         addTriedElements(panel, triedRestaurantTitle, addRestaurantButton, viewRestaurantsButton, makeBookingButton,
-                backButton);
+                saveButton, backButton);
         jframe.add(panel);
         setTriedVisibility(jframe, addRestaurantButton, viewRestaurantsButton, makeBookingButton);
 
@@ -128,6 +129,15 @@ public class GraphicalUI {
             }
         });
 
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myApp.saveRestaurants();
+                displaySavedRestaurants();
+
+            }
+        });
+
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -139,15 +149,16 @@ public class GraphicalUI {
 
     public void displayChooseFromToTryOptions(JFrame jframe) {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(5, 0));
+        panel.setLayout(new GridLayout(6, 0));
         JLabel toTryRestaurantTitle = new JLabel("Restaurants To Try:");
         toTryRestaurantTitle.setHorizontalAlignment(JLabel.CENTER);
         JButton addRestaurantButton = new JButton("Add a restaurant to this collection");
         JButton viewRestaurantsButton = new JButton("View restaurants in this collection");
         JButton makeBookingButton = new JButton("Make a booking for a restaurant");
+        JButton saveButton = new JButton("Save");
         JButton backButton = new JButton("Back");
-        addTriedElements(panel, toTryRestaurantTitle, addRestaurantButton, viewRestaurantsButton, makeBookingButton,
-                backButton);
+        addTriedElements(panel, toTryRestaurantTitle, addRestaurantButton, viewRestaurantsButton,
+                makeBookingButton, saveButton, backButton);
         jframe.add(panel);
         setTriedVisibility(jframe, addRestaurantButton, viewRestaurantsButton, makeBookingButton);
 
@@ -170,7 +181,17 @@ public class GraphicalUI {
         makeBookingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                panel.setVisible(false);
+                displayChooseBookingToTry(jframe, myApp.toTry.restaurantList);
 
+            }
+        });
+
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myApp.saveRestaurants();
+                displaySavedRestaurants();
             }
         });
 
@@ -191,11 +212,12 @@ public class GraphicalUI {
         makeBookingButton.setVisible(true);
     }
 
-    private void addTriedElements(JPanel panel, JLabel triedRestaurantTitle, JButton addRestaurantButton, JButton viewRestaurantsButton, JButton makeBookingButton, JButton backButton) {
+    private void addTriedElements(JPanel panel, JLabel triedRestaurantTitle, JButton addRestaurantButton, JButton viewRestaurantsButton, JButton makeBookingButton, JButton saveButton, JButton backButton) {
         panel.add(triedRestaurantTitle);
         panel.add(addRestaurantButton);
         panel.add(viewRestaurantsButton);
         panel.add(makeBookingButton);
+        panel.add(saveButton);
         panel.add(backButton);
     }
 
@@ -559,6 +581,8 @@ public class GraphicalUI {
 
     }
 
+
+
     public void displayChooseBookingTried(JFrame jframe, ArrayList<Restaurant> restaurants) {
         DefaultListModel<String> listModel = new DefaultListModel<>();
 
@@ -583,20 +607,35 @@ public class GraphicalUI {
         firstPanel.add(scrollPane);
 
         JPanel thirdPanel = new JPanel();
-        secondPanel.setMaximumSize(new Dimension(1000, 150));
+        secondPanel.setMaximumSize(new Dimension(1000, 25));
         JButton buttonMakeBooking = new JButton("Make Booking");
         secondPanel.add(buttonMakeBooking);
+
+        JPanel fourthPanel = new JPanel();
+        fourthPanel.setMaximumSize(new Dimension(1000, 125));
+        JButton buttonBack = new JButton("Back");
+        fourthPanel.add(buttonBack);
 
         mainPanel.add(firstPanel);
         mainPanel.add(secondPanel);
         mainPanel.add(thirdPanel);
+        mainPanel.add(fourthPanel);
 
         jframe.add(mainPanel);
 
         buttonMakeBooking.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 displayPopUpMenu(restaurantList.getSelectedValue());
+            }
+        });
+
+        buttonBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.setVisible(false);
+                displayChooseFromTriedOptions(jframe);
             }
         });
 
@@ -638,7 +677,7 @@ public class GraphicalUI {
         fourthPanel.add(comboBoxInteger);
 
         JPanel fifthPanel = new JPanel();
-        fifthPanel.setMaximumSize(new Dimension(500, 100));
+        fifthPanel.setMaximumSize(new Dimension(500, 50));
         JButton buttonNext = new JButton("Next");
         fifthPanel.add(buttonNext);
 
@@ -689,6 +728,176 @@ public class GraphicalUI {
         panel.add(buttonDone);
         jframe.add(panel);
 
+        buttonDone.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jframe.setVisible(false);
+            }
+        });
+
+    }
+
+    public void displayChooseBookingToTry(JFrame jframe, ArrayList<Restaurant> restaurants) {
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+
+        for (Restaurant r : restaurants) {
+            listModel.addElement(r.getRestaurantName());
+        }
+
+        JList<String> restaurantList = new JList<>(listModel);
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+
+        JPanel firstPanel = new JPanel();
+        firstPanel.setMaximumSize(new Dimension(1000, 100));
+        JLabel labelChooseBookRestaurant = new JLabel("Choose from restaurants to book:");
+        firstPanel.add(labelChooseBookRestaurant);
+
+        JPanel secondPanel = new JPanel();
+        secondPanel.setMaximumSize(new Dimension(1000, 500));
+        JScrollPane scrollPane = new JScrollPane(restaurantList);
+        scrollPane.setPreferredSize(new Dimension(800, 500));
+        firstPanel.add(scrollPane);
+
+        JPanel thirdPanel = new JPanel();
+        secondPanel.setMaximumSize(new Dimension(1000, 25));
+        JButton buttonMakeBooking = new JButton("Make Booking");
+        secondPanel.add(buttonMakeBooking);
+
+        JPanel fourthPanel = new JPanel();
+        fourthPanel.setMaximumSize(new Dimension(1000, 125));
+        JButton buttonBack = new JButton("Back");
+        fourthPanel.add(buttonBack);
+
+        mainPanel.add(firstPanel);
+        mainPanel.add(secondPanel);
+        mainPanel.add(thirdPanel);
+        mainPanel.add(fourthPanel);
+
+        jframe.add(mainPanel);
+
+        buttonMakeBooking.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                displayPopUpToTryMenu(restaurantList.getSelectedValue());
+            }
+        });
+
+        buttonBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.setVisible(false);
+                displayChooseFromToTryOptions(jframe);
+            }
+        });
+
+    }
+
+    public void displayPopUpToTryMenu(String name) {
+        JFrame framePopUp = new JFrame("Make a booking for " + name);
+        framePopUp.setLocationRelativeTo(null);
+        framePopUp.setSize(new Dimension(500,300));
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+
+        JPanel firstPanel = new JPanel();
+        firstPanel.setMaximumSize(new Dimension(500,50));
+        JLabel labelChooseTime = new JLabel("Choose a reservation time:");
+        firstPanel.add(labelChooseTime);
+
+        SpinnerDateModel dateModel = new SpinnerDateModel();
+        JSpinner spinner = new JSpinner(dateModel);
+        spinner.setEditor(new JSpinner.DateEditor(spinner, "dd.MM.yyyy"));
+        Calendar calendar = new GregorianCalendar(2000, Calendar.JANUARY, 1);
+        spinner.setValue(calendar.getTime());
+        JPanel secondPanel = new JPanel();
+        secondPanel.setMaximumSize(new Dimension(500, 50));
+        secondPanel.add(spinner);
+
+        JPanel thirdPanel = new JPanel();
+        thirdPanel.setMaximumSize(new Dimension(500,50));
+        JLabel labelChooseSeats = new JLabel("For how many people: ");
+        thirdPanel.add(labelChooseSeats);
+        thirdPanel.setMaximumSize(new Dimension(500, 50));
+
+        JComboBox<Integer> comboBoxInteger = new JComboBox<>();
+        for (Integer i = 1; i <= 100; i++) {
+            comboBoxInteger.addItem(i);
+        }
+        JPanel fourthPanel = new JPanel();
+        fourthPanel.setMaximumSize(new Dimension(500,50));
+        fourthPanel.add(comboBoxInteger);
+
+        JPanel fifthPanel = new JPanel();
+        fifthPanel.setMaximumSize(new Dimension(500, 50));
+        JButton buttonNext = new JButton("Next");
+        fifthPanel.add(buttonNext);
+
+        mainPanel.add(firstPanel);
+        mainPanel.add(secondPanel);
+        mainPanel.add(thirdPanel);
+        mainPanel.add(fourthPanel);
+        mainPanel.add(fifthPanel);
+        framePopUp.add(mainPanel);
+        framePopUp.setVisible(true);
+
+        buttonNext.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.setVisible(false);
+
+                Date bookingDate = dateModel.getDate();
+
+                LocalDate localDate = bookingDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                int year  = localDate.getYear();
+                int month = localDate.getMonthValue();
+                int day   = localDate.getDayOfMonth();
+                int hour = calendar.get(Calendar.HOUR);
+
+                Integer seats = comboBoxInteger.getSelectedIndex();
+
+                Restaurant bookedRestaurant = null;
+                for (Restaurant r : myApp.toTry.restaurantList) {
+                    if (r.getRestaurantName() == name) {
+                        bookedRestaurant = r;
+                        r.getBooking().setAll(year,month,day,hour,seats);
+                    }
+                }
+
+                displayConfirmBooking(framePopUp, bookedRestaurant);
+            }
+        });
+    }
+
+    public void displaySavedRestaurants() {
+        JFrame framePopUp = new JFrame("Your information has been saved");
+        framePopUp.setLocationRelativeTo(null);
+        framePopUp.setSize(new Dimension(500,300));
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+
+        JPanel firstPanel = new JPanel();
+        firstPanel.setMaximumSize(new Dimension(500, 200));
+        JLabel labelSaved = new JLabel("Your information has been saved");
+        firstPanel.add((labelSaved));
+
+        JPanel secondPanel = new JPanel();
+        secondPanel.setMaximumSize(new Dimension(500, 100));
+        JButton buttonDone = new JButton("Done");
+        secondPanel.add(buttonDone);
+
+        framePopUp.add(firstPanel);
+        framePopUp.add(secondPanel);
+
+        framePopUp.setVisible(true);
+
+        buttonDone.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                framePopUp.setVisible(false);
+            }
+        });
     }
 }
 
