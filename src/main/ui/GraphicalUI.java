@@ -1,11 +1,16 @@
 package ui;
 
 import model.Restaurant;
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
 import java.time.LocalDate;
 // import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -39,8 +44,8 @@ public class GraphicalUI {
         enterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                playMusic();
                 displayChooseCollectionScreen(jframe);
-
                 enterButton.setVisible(false);
                 panel.setVisible(false);
             }
@@ -898,6 +903,24 @@ public class GraphicalUI {
                 framePopUp.setVisible(false);
             }
         });
+    }
+
+    public void playMusic() {
+        AudioPlayer player = AudioPlayer.player;
+        AudioStream stream;
+        AudioData data;
+
+        ContinuousAudioDataStream loop = null;
+
+        try {
+            stream = new AudioStream(new FileInputStream("src/main/khalidfloating.mp3"));
+            data = stream.getData();
+            loop = new ContinuousAudioDataStream(data);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+        player.start(loop);
+
     }
 }
 
