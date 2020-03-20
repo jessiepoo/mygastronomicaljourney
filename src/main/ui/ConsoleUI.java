@@ -15,6 +15,7 @@ import java.util.Scanner;
 
 // Restaurant collection application
 public class ConsoleUI {
+
     RestaurantCollectionApp myApp;
     private static final String TRIED_FILE = "./data/triedCollection.txt";
     private static final String TO_TRY_FILE = "./data/toTryCollection.txt";

@@ -25,7 +25,7 @@ documentation of their experiences with food.
 **Application functions:**
 - Add restaurants the user has been to
 - Add / remove restaurants the user wants to try
-- Rate restaurants based on taste, price, etc.
+- Rate restaurants based on taste, price and service.
 - Sorts restaurants based on alphabetical order, taste, price, and service. 
 
 ##User Story
@@ -38,6 +38,33 @@ documentation of their experiences with food.
 - As a user, I want to be able to select a restaurant and add a booking for the restaurant.
 - As a user, I want to be able to save my restaurant collection list to file.
 - As a user, I want to be able to optionally load my restaurant collection from file when the problem starts.
+
+
+##Instructions for Grader 
+
+(Once in a while, it takes multiple clicks on a button to trigger the event. I think it is probably
+a lagging issue with intellij but it works fine otherwise.)
+
+- When the program starts, you can trigger my audio component by clicking the enter button.
+
+- First, click the restaurants you have tried to access that collection.
+- You can generate the first required event by clicking add a restaurant and entering the fields
+  required (restaurant names start with capitalized letters and ratings out of 5) and clicking done.
+  
+- You can generate the second required event by clicking view restaurant where you can 
+  choose how you want the restaurants to be sorted by. When done, click the back button.
+  
+- You can generate a third event by making a booking for the restaurant. First click the booking
+  button, select the restaurant you would like to book and choose a time and seats, then click done.
+  
+- You can save the state of the restaurants by clicking the save button.
+- To reload the restaurants, all you have to do is go back to the view restaurants where you can view
+  the restaurant names and ratings.
+
+- All of this can also be done when accessing the "restaurants to try" collection.
+
+  
+  
 
 
 
