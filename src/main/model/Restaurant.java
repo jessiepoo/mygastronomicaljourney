@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.EmptyRestaurantNameException;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -17,7 +19,10 @@ public class Restaurant {
 
     // REQUIRES: restaurantName is not a non-empty string
     // EFFECTS: Constructs Restaurant with the name of this restaurant.
-    public Restaurant(String restaurantName) {
+    public Restaurant(String restaurantName) throws EmptyRestaurantNameException {
+        if (restaurantName == "") {
+            throw new EmptyRestaurantNameException("Restaurant name empty");
+        }
         this.restaurantName = restaurantName;
         tasteRating = 0;
         priceRating = 0;

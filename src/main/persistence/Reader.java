@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.EmptyRestaurantNameException;
 import model.Restaurant;
 import model.RestaurantCollection;
 
@@ -71,7 +72,12 @@ public class Reader {
         int day = Integer.parseInt(components.get(8));
         int hour = Integer.parseInt(components.get(9));
 
-        Restaurant restaurant = new Restaurant(name);
+        Restaurant restaurant = null;
+        try {
+            restaurant = new Restaurant(name);
+        } catch (EmptyRestaurantNameException e) {
+            System.out.println("name of restaurant must be a non-empty string");
+        }
         restaurant.rateTaste(taste);
         restaurant.ratePrice(price);
         restaurant.rateService(service);

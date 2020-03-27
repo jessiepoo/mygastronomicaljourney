@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.EmptyRestaurantNameException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,11 +32,15 @@ class RestaurantCollectionTest {
 
     @BeforeEach
     void runBefore() {
-        testCollection = new RestaurantCollection();
-        miku = new Restaurant("Miku");
-        haiDiLao = new Restaurant("Haidilao Hotpot");
-        sushiMura = new Restaurant("Sushi Mura");
-        oebBreakfast = new Restaurant("OEB Breakfast");
+        try {
+            testCollection = new RestaurantCollection();
+            miku = new Restaurant("Miku");
+            haiDiLao = new Restaurant("Haidilao Hotpot");
+            sushiMura = new Restaurant("Sushi Mura");
+            oebBreakfast = new Restaurant("OEB Breakfast");
+        } catch (EmptyRestaurantNameException e) {
+            fail();
+        }
     }
 
     @Test

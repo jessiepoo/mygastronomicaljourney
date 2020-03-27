@@ -63,7 +63,18 @@ a lagging issue with intellij but it works fine otherwise.)
 
 - All of this can also be done when accessing the "restaurants to try" collection.
 
-  
+## Phase 4 Design Patterns
+- I have chosen the first option where I design a class that is robust. In the restaurant class, I have chosen
+  to make the constructor more robust by throwing a checked exception when an empty string is passed in as an argument.
+- I had to create a try and catch statement in: 
+      - the "addTriedRestaurant" method in the Restaurant class
+      - the "addToTryRestaurant" method in the RestaurantCollectionApp class
+      - the "parseRestaurant" method in the Reader class
+      - the "runBefore" method in the RestaurantCollectionTest class
+      - the "runBefore" method in the WriterTest class
+      - the "runBefore" method in the RestaurantTest class
+- I made a test class for that exception and included tests for empty and non empty restaurant names.
+      
   
 
 

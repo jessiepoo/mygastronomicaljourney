@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.EmptyRestaurantNameException;
 import model.Restaurant;
 import model.RestaurantCollection;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +24,11 @@ class WriterTest {
     @BeforeEach
     void runBefore() throws FileNotFoundException, UnsupportedEncodingException {
         testWriter = new Writer(new File(TEST_FILE));
-        newMandarin = new Restaurant("New_Mandarin");
+        try {
+            newMandarin = new Restaurant("New_Mandarin");
+        } catch (EmptyRestaurantNameException e) {
+            fail();
+        }
         newMandarin.rateTaste(4.8);
         newMandarin.ratePrice(3.6);
         newMandarin.rateService(2.9);

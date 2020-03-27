@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.EmptyRestaurantNameException;
 import model.Restaurant;
 import model.RestaurantCollection;
 import persistence.Reader;
@@ -65,7 +66,13 @@ public class RestaurantCollectionApp {
 
     protected void addTriedRestaurant(String name, double tasteRating, double priceRating, double serviceRating) {
         System.out.print("Enter the name of restaurant (underlines for spaces): ");
-        Restaurant newRestaurant = new Restaurant(name);
+        Restaurant newRestaurant = null;
+        try {
+            newRestaurant = new Restaurant(name);
+            tried.addRestaurant(newRestaurant);
+        } catch (EmptyRestaurantNameException e) {
+            System.out.println("name of restaurant must be a non-empty string");
+        }
         tried.addRestaurant(newRestaurant);
         System.out.print("　"
                 + " ∧＿∧\n"
@@ -82,7 +89,13 @@ public class RestaurantCollectionApp {
     }
 
     void addToTryRestaurant(String name) {
-        Restaurant newRestaurant = new Restaurant(name);
+        Restaurant newRestaurant = null;
+        try {
+            newRestaurant = new Restaurant(name);
+            tried.addRestaurant(newRestaurant);
+        } catch (EmptyRestaurantNameException e) {
+            System.out.println("name of restaurant must be a non-empty string");
+        }
         toTry.addRestaurant(newRestaurant);
     }
 

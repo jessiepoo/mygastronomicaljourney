@@ -913,8 +913,8 @@ public class GraphicalUI {
             public void actionPerformed(ActionEvent e) {
                 mainPanel.setVisible(false);
                 displayChooseFromToTryOptions(jframe);
-            }
-        });
+
+        }});
     }
 
     private void toTryMakeBookingButtonCommand(JList<String> restaurantList, JButton buttonMakeBooking) {

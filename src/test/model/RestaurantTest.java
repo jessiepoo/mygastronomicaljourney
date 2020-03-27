@@ -1,12 +1,12 @@
 package model;
 
+import exceptions.EmptyRestaurantNameException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RestaurantTest {
     private Restaurant testRestaurant;
@@ -15,7 +15,11 @@ public class RestaurantTest {
 
     @BeforeEach
     void runBefore() {
-        testRestaurant = new Restaurant("HaiDiLao Hotpot");
+        try {
+            testRestaurant = new Restaurant("HaiDiLao Hotpot");
+        } catch (EmptyRestaurantNameException e) {
+            fail();
+        }
         tomatoSoupBase = new MenuItem("Tomato soup base", 5.00);
         handTossedNoodles = new MenuItem("Hand tossed noodles", 7.50);
     }
