@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RestaurantCollectionTest {
+class TriedCollectionTest {
     private TriedCollection testCollection;
     private ToTryCollection testToTryCollection;
 

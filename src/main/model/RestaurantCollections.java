@@ -9,6 +9,5 @@ public interface RestaurantCollections {
 
     public String viewAllRestaurants(ArrayList<Restaurant> restaurants);
 
-    public void save(PrintWriter printWriter);
 
 }
