@@ -3,7 +3,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 // Sorts a list of restaurants accordingly
 public class Sorter {
