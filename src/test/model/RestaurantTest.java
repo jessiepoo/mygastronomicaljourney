@@ -20,8 +20,6 @@ public class RestaurantTest {
         } catch (EmptyRestaurantNameException e) {
             fail();
         }
-        tomatoSoupBase = new MenuItem("Tomato soup base", 5.00);
-        handTossedNoodles = new MenuItem("Hand tossed noodles", 7.50);
     }
 
     @Test
@@ -32,7 +30,6 @@ public class RestaurantTest {
         assertEquals(0, testRestaurant.getServiceRating());
         assertEquals(0, testRestaurant.getOverallRating());
         assertFalse(testRestaurant.getBooking().getIsBooked());
-        assertEquals(0, testRestaurant.triedItems.size());
     }
 
     @Test
@@ -67,14 +64,6 @@ public class RestaurantTest {
         assertEquals(overallRating, testRestaurant.getOverallRating());
     }
 
-    @Test
-    void testAddItem() {
-        testRestaurant.addItem(tomatoSoupBase);
-        assertEquals(1, testRestaurant.triedItems.size());
-        testRestaurant.addItem(handTossedNoodles);
-        assertEquals(2, testRestaurant.triedItems.size());
-        assertEquals("Hand tossed noodles", testRestaurant.triedItems.get(1).getItemName());
-    }
 
     @Test
     void testRateTaste() {

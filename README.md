@@ -83,9 +83,13 @@ a lagging issue with intellij but it works fine otherwise.)
   I decided to create an interface for the collections called RestaurantCollections and created 2 different 
   subclasses ("TriedCollection" and "ToTryCollection") that implement that interface so that the execution can be
   handled by 2 different classes and eliminate the cohesion. I also had to change the write method in the Writer
-  class and create 2 instances of restaurantcollections (Tried and ToTry) to the RestaurantCollectionApp class.
+  class and create 2 instances of restaurantCollections (Tried and ToTry) to the RestaurantCollectionApp class.
   
-  
+- Another thing I noticed was that in the restaurantCollection class, the restaurants were being sorted. However,
+  it felt like this should be done in a separate class since it was serving a different functionality. Following the 
+  one class one functionality principle, I created the Sorter class which sorts the restaurants according to name, 
+  overall rating, taste rating, price rating and service rating. I instantiated a sorter class in the triedCollection 
+  class and call the sort methods from the getSorter() accessor. 
       
   
 

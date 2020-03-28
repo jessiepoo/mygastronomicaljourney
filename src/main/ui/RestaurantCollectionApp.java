@@ -74,13 +74,6 @@ public class RestaurantCollectionApp {
         } catch (EmptyRestaurantNameException e) {
             System.out.println("name of restaurant must be a non-empty string");
         }
-        tried.addRestaurant(newRestaurant);
-        System.out.print("　"
-                + " ∧＿∧\n"
-                + "（｡･ω･｡)つ━☆・*。\n"
-                + "⊂　　 ノ 　　　・゜+.\n"
-                + "しーＪ　　　°。+ *´¨)\n"
-                + "Give a star rating out of 5 for taste: ");
         newRestaurant.rateTaste(tasteRating);
         System.out.print("Give a star rating out of 5 for price: ");
         newRestaurant.ratePrice(priceRating);
@@ -93,11 +86,10 @@ public class RestaurantCollectionApp {
         Restaurant newRestaurant = null;
         try {
             newRestaurant = new Restaurant(name);
-            tried.addRestaurant(newRestaurant);
+            toTry.addRestaurant(newRestaurant);
         } catch (EmptyRestaurantNameException e) {
             System.out.println("name of restaurant must be a non-empty string");
         }
-        toTry.addRestaurant(newRestaurant);
     }
 
 

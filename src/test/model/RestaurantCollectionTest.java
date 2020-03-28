@@ -13,22 +13,12 @@ class RestaurantCollectionTest {
     private ToTryCollection testToTryCollection;
 
     private Restaurant miku;
-    private MenuItem salmonAburiSushi;
-    private MenuItem uniNigiri;
-    private MenuItem threeFlightSake;
 
     private Restaurant haiDiLao;
-    private MenuItem wagyuBeef;
-    private MenuItem handTossedNoodle;
 
     private Restaurant oebBreakfast;
-    private MenuItem scallopAndHogPoutine;
-    private MenuItem crepeWithBerries;
 
     private Restaurant sushiMura;
-    private MenuItem spicySalmonSashimi;
-    private MenuItem TempuraUdon;
-
 
     @BeforeEach
     void runBefore() {
@@ -67,7 +57,7 @@ class RestaurantCollectionTest {
         sushiMura.rateTaste(2.8);
         testCollection.restaurantList.add(sushiMura);
 
-        ArrayList<Restaurant> sortedRestaurants = testCollection.getSortedRestaurantsByTaste();
+        ArrayList<Restaurant> sortedRestaurants = testCollection.getSorter().sortByTaste(testCollection.restaurantList);
 
         assertEquals(3, sortedRestaurants.size());
         assertEquals(haiDiLao, sortedRestaurants.get(0));
@@ -80,7 +70,7 @@ class RestaurantCollectionTest {
         haiDiLao.rateTaste(4.2);
         testCollection.addRestaurant(miku);
         testCollection.addRestaurant(haiDiLao);
-        ArrayList<Restaurant> sortedList = testCollection.getSortedRestaurantsByTaste();
+        ArrayList<Restaurant> sortedList = testCollection.getSorter().sortByTaste(testCollection.restaurantList);
         assertEquals(miku, sortedList.get(0));
         assertEquals(haiDiLao, sortedList.get(1));
     }
@@ -99,7 +89,7 @@ class RestaurantCollectionTest {
         oebBreakfast.ratePrice(3.3);
         testCollection.restaurantList.add(oebBreakfast);
 
-        ArrayList<Restaurant> sortedList = testCollection.getSortedRestaurantsByPrice();
+        ArrayList<Restaurant> sortedList = testCollection.getSorter().sortByPrice(testCollection.restaurantList);
 
         assertEquals(4, testCollection.restaurantList.size());
         assertEquals(sushiMura, sortedList.get(0));
@@ -113,7 +103,7 @@ class RestaurantCollectionTest {
         testCollection.addRestaurant(haiDiLao);
         miku.ratePrice(2.2);
         haiDiLao.ratePrice(2.2);
-        ArrayList<Restaurant> sortedList = testCollection.getSortedRestaurantsByPrice();
+        ArrayList<Restaurant> sortedList = testCollection.getSorter().sortByPrice(testCollection.restaurantList);
         assertEquals(miku, sortedList.get(0));
         assertEquals(haiDiLao, sortedList.get(1));
     }
@@ -132,7 +122,7 @@ class RestaurantCollectionTest {
         oebBreakfast.rateService(1.9);
         testCollection.restaurantList.add(oebBreakfast);
 
-        ArrayList<Restaurant> sortedList = testCollection.getSortedRestaurantsByService();
+        ArrayList<Restaurant> sortedList = testCollection.getSorter().sortByService(testCollection.restaurantList);
 
         assertEquals(4, sortedList.size());
         assertEquals(haiDiLao, sortedList.get(0));
@@ -145,7 +135,7 @@ class RestaurantCollectionTest {
         testCollection.addRestaurant(haiDiLao);
         miku.ratePrice(4.3);
         haiDiLao.ratePrice(4.3);
-        ArrayList<Restaurant> sortedList = testCollection.getSortedRestaurantsByService();
+        ArrayList<Restaurant> sortedList = testCollection.getSorter().sortByService(testCollection.restaurantList);
         assertEquals(miku, sortedList.get(0));
         assertEquals(haiDiLao, sortedList.get(1));
     }
@@ -164,7 +154,7 @@ class RestaurantCollectionTest {
         sushiMura.rateService(1.2);
         assertEquals(((3.2+0.1+1.2)/3), sushiMura.getOverallRating());
 
-        ArrayList<Restaurant> sortedList = testCollection.getSortedRestaurantOverall();
+        ArrayList<Restaurant> sortedList = testCollection.getSorter().sortByOverall(testCollection.restaurantList);
         assertEquals(2, sortedList.size());
         assertEquals(miku, sortedList.get(0));
 
@@ -173,7 +163,7 @@ class RestaurantCollectionTest {
         oebBreakfast.ratePrice(4.2);
         oebBreakfast.rateTaste(5.0);
 
-        sortedList = testCollection.getSortedRestaurantOverall();
+        sortedList = testCollection.getSorter().sortByOverall(testCollection.restaurantList);
         assertEquals(oebBreakfast, sortedList.get(0));
         assertEquals(sushiMura, sortedList.get(2));
     }
@@ -192,7 +182,7 @@ class RestaurantCollectionTest {
         miku.ratePrice(2.2);
         assertEquals(((4.1+4.7+2.2)/3), haiDiLao.getOverallRating());
 
-        ArrayList<Restaurant> sortedList = testCollection.getSortedRestaurantOverall();
+        ArrayList<Restaurant> sortedList = testCollection.getSorter().sortByOverall(testCollection.restaurantList);
         assertEquals(miku, sortedList.get(0));
         assertEquals(haiDiLao, sortedList.get(1));
     }
@@ -204,7 +194,7 @@ class RestaurantCollectionTest {
         testCollection.restaurantList.add(sushiMura);
         testCollection.restaurantList.add(oebBreakfast);
 
-        ArrayList<Restaurant> sortedList = testCollection.getSortedRestaurantsByName();
+        ArrayList<Restaurant> sortedList = testCollection.getSorter().sortByName(testCollection.restaurantList);
 
         assertEquals(haiDiLao, sortedList.get(0));
         assertEquals(miku, sortedList.get(1));

@@ -6,6 +6,7 @@ import persistence.Saveable;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+// A restaurant collection that includes the restaurants the user would like to try
 public class ToTryCollection implements Saveable, RestaurantCollections {
 
     public ArrayList<Restaurant> restaurantList;

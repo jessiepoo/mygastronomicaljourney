@@ -14,7 +14,6 @@ public class Restaurant {
     private double serviceRating;
     private double overallRating; // Average of all 3 ratings
     private Booking booking;
-    public ArrayList<MenuItem> triedItems;
 
 
     // REQUIRES: restaurantName is not a non-empty string
@@ -29,7 +28,6 @@ public class Restaurant {
         serviceRating = 0;
         overallRating = 0;
         booking = new Booking();
-        triedItems = new ArrayList<MenuItem>();
     }
 
     // EFFECTS: gets the name of this restaurant
@@ -62,10 +60,6 @@ public class Restaurant {
         return booking;
     }
 
-    // EFFECTS: adds a menu item to this restaurant
-    public void addItem(MenuItem item) {
-        triedItems.add(item);
-    }
 
     // REQUIRES: rating must be between 0 and 5
     // MODIFIES: this

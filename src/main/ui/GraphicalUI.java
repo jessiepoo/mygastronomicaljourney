@@ -435,7 +435,7 @@ public class GraphicalUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panel.setVisible(false);
-                displaySortedServiceRestaurants(jframe, myApp.tried.getSortedRestaurantsByService());
+                displaySortedServiceRestaurants(jframe, myApp.tried.getSorter().sortByService(myApp.tried.restaurantList));
             }
         });
     }
@@ -445,7 +445,7 @@ public class GraphicalUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panel.setVisible(false);
-                displaySortedPriceRestaurants(jframe, myApp.tried.getSortedRestaurantsByPrice());
+                displaySortedPriceRestaurants(jframe, myApp.tried.getSorter().sortByPrice(myApp.tried.restaurantList));
             }
         });
     }
@@ -455,7 +455,7 @@ public class GraphicalUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panel.setVisible(false);
-                displaySortedTasteRestaurants(jframe, myApp.tried.getSortedRestaurantsByTaste());
+                displaySortedTasteRestaurants(jframe, myApp.tried.getSorter().sortByTaste(myApp.tried.restaurantList));
             }
         });
     }
@@ -465,7 +465,7 @@ public class GraphicalUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panel.setVisible(false);
-                displaySortedOverallRestaurants(jframe, myApp.tried.getSortedRestaurantOverall());
+                displaySortedOverallRestaurants(jframe, myApp.tried.getSorter().sortByOverall(myApp.tried.restaurantList));
             }
         });
     }
@@ -475,7 +475,7 @@ public class GraphicalUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panel.setVisible(false);
-                displaySortedNameRestaurants(jframe, myApp.tried.getSortedRestaurantsByName());
+                displaySortedNameRestaurants(jframe, myApp.tried.getSorter().sortByName(myApp.tried.restaurantList));
             }
         });
     }

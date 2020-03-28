@@ -7,51 +7,30 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
-// A collection of restaurants that can be sorted according to the restaurants rating
+// A collection of restaurants that the user has already tried.
 public class TriedCollection implements Saveable, RestaurantCollections {
 
     public ArrayList<Restaurant> restaurantList;
+    private Sorter sorter;
 
     // Constructs a restaurant collection with an empty list of restaurants
     public TriedCollection() {
         restaurantList = new ArrayList<Restaurant>();
+        sorter = new Sorter(restaurantList);
     }
 
     // EFFECTS: Adds a restaurant to the restaurant list
     @Override
     public final void addRestaurant(Restaurant restaurant) {
         restaurantList.add(restaurant);
+
     }
 
-    // EFFECTS: Returns the list of restaurants sorted by taste
-    public ArrayList<Restaurant> getSortedRestaurantsByTaste() {
-        Collections.sort(restaurantList, Restaurant.tasteComparator);
-        return restaurantList;
+    // EFFECTS: Gets the sorter
+    public Sorter getSorter() {
+        return sorter;
     }
 
-    // EFFECTS: Returns the list of restaurants sorted by price
-    public ArrayList<Restaurant> getSortedRestaurantsByPrice() {
-        Collections.sort(restaurantList, Restaurant.priceComparator);
-        return restaurantList;
-    }
-
-    // EFFECTS: Returns the list of restaurants sorted by service
-    public ArrayList<Restaurant> getSortedRestaurantsByService() {
-        Collections.sort(restaurantList, Restaurant.serviceComparator);
-        return restaurantList;
-    }
-
-    // EFFECTS: Returns the list of restaurants sorted by overall
-    public ArrayList<Restaurant> getSortedRestaurantOverall() {
-        Collections.sort(restaurantList, Restaurant.overallComparator);
-        return restaurantList;
-    }
-
-    // EFFECTS: Returns the list of restaurants sorted by name
-    public ArrayList<Restaurant> getSortedRestaurantsByName() {
-        Collections.sort(restaurantList, Restaurant.nameComparator);
-        return restaurantList;
-    }
 
     @Override
     public String viewAllRestaurants(ArrayList<Restaurant> restaurants) {
