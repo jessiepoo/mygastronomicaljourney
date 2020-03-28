@@ -1,7 +1,7 @@
 package ui;
 
 import model.Restaurant;
-import model.RestaurantCollection;
+import model.ToTryCollection;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.time.LocalDate;
-// import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
 
@@ -991,13 +990,13 @@ public class GraphicalUI {
 
     private void buttonNextCommand(String name, JFrame framePopUp, JPanel mainPanel, SpinnerDateModel dateModel,
                                    JComboBox<String> cb, JComboBox<Integer> comboBoxInteger,
-                                   JButton buttonNext, RestaurantCollection toTry) {
+                                   JButton buttonNext, ToTryCollection toTry) {
         buttonNextCommand2(name, framePopUp, mainPanel, dateModel, cb, comboBoxInteger, buttonNext, toTry);
     }
 
     private void buttonNextCommand2(String name, JFrame framePopUp, JPanel mainPanel, SpinnerDateModel dateModel,
                                     JComboBox<String> cb, JComboBox<Integer> comboBoxInteger, JButton buttonNext,
-                                    RestaurantCollection toTry) {
+                                    ToTryCollection toTry) {
         buttonNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1019,7 +1018,7 @@ public class GraphicalUI {
     }
 
     private Restaurant toTryGetBooking(int year, int month, int day, int hour, Integer seats,
-                                       Restaurant bookedRestaurant, RestaurantCollection toTry, String name) {
+                                       Restaurant bookedRestaurant, ToTryCollection toTry, String name) {
         for (Restaurant r : toTry.restaurantList) {
             if (r.getRestaurantName() == name) {
                 bookedRestaurant = r;

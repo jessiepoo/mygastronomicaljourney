@@ -4,13 +4,13 @@ import exceptions.EmptyRestaurantNameException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantCollectionTest {
-    private RestaurantCollection testCollection;
+    private TriedCollection testCollection;
+    private ToTryCollection testToTryCollection;
 
     private Restaurant miku;
     private MenuItem salmonAburiSushi;
@@ -33,7 +33,8 @@ class RestaurantCollectionTest {
     @BeforeEach
     void runBefore() {
         try {
-            testCollection = new RestaurantCollection();
+            testCollection = new TriedCollection();
+            testToTryCollection = new ToTryCollection();
             miku = new Restaurant("Miku");
             haiDiLao = new Restaurant("Haidilao Hotpot");
             sushiMura = new Restaurant("Sushi Mura");
@@ -222,4 +223,17 @@ class RestaurantCollectionTest {
         assertEquals(""+"Miku"+"\n"+"Haidilao Hotpot"+"\n"+"Sushi Mura"+"\n"+"OEB Breakfast"+"\n",
                 allRestaurants);
     }
+
+    @Test
+    void testViewAllToTryRestaurants() {
+        testToTryCollection.restaurantList.add(miku);
+        testToTryCollection.restaurantList.add(haiDiLao);
+        testToTryCollection.restaurantList.add(sushiMura);
+        testToTryCollection.restaurantList.add(oebBreakfast);
+
+        String allRestaurants = testCollection.viewAllRestaurants(testCollection.restaurantList);
+        assertEquals(""+"Miku"+"\n"+"Haidilao Hotpot"+"\n"+"Sushi Mura"+"\n"+"OEB Breakfast"+"\n",
+                allRestaurants);
+    }
+
 }

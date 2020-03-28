@@ -2,7 +2,7 @@ package persistence;
 
 import exceptions.EmptyRestaurantNameException;
 import model.Restaurant;
-import model.RestaurantCollection;
+import model.TriedCollection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class WriterTest {
     private static final String TEST_FILE = "data/triedCollection.txt";
     private Writer testWriter;
-    private RestaurantCollection tried = new RestaurantCollection();
+    private TriedCollection tried = new TriedCollection();
     private Restaurant newMandarin;
 
 

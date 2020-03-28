@@ -2,7 +2,6 @@ package persistence;
 
 import exceptions.EmptyRestaurantNameException;
 import model.Restaurant;
-import model.RestaurantCollection;
 
 import java.io.File;
 import java.io.IOException;

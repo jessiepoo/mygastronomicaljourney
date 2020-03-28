@@ -2,7 +2,8 @@ package ui;
 
 import exceptions.EmptyRestaurantNameException;
 import model.Restaurant;
-import model.RestaurantCollection;
+import model.TriedCollection;
+import model.ToTryCollection;
 import persistence.Reader;
 import persistence.Writer;
 
@@ -15,8 +16,8 @@ import java.util.ArrayList;
 public class RestaurantCollectionApp {
     private static final String TRIED_FILE = "./data/triedCollection.txt";
     private static final String TO_TRY_FILE = "./data/toTryCollection.txt";
-    protected RestaurantCollection tried;
-    protected RestaurantCollection toTry;
+    protected TriedCollection tried;
+    protected ToTryCollection toTry;
 
 
     public RestaurantCollectionApp() {
@@ -25,8 +26,8 @@ public class RestaurantCollectionApp {
 
     // EFFECTS; initializes the tried collection and the to-try collection.
     private void init() {
-        tried = new RestaurantCollection();
-        toTry = new RestaurantCollection();
+        tried = new TriedCollection();
+        toTry = new ToTryCollection();
     }
 
     // MODIFIES: this
@@ -34,8 +35,8 @@ public class RestaurantCollectionApp {
     // otherwise initializes accounts with default values
     void loadRestaurants() {
         try {
-            tried = new RestaurantCollection();
-            toTry = new RestaurantCollection();
+            tried = new TriedCollection();
+            toTry = new ToTryCollection();
             ArrayList<Restaurant> triedRestaurants = Reader.readRestaurants(new File(TRIED_FILE));
             ArrayList<Restaurant> toTryRestaurants = Reader.readRestaurants(new File(TO_TRY_FILE));
             tried.restaurantList = triedRestaurants;

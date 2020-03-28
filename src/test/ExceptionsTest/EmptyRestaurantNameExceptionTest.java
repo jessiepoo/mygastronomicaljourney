@@ -2,8 +2,6 @@ package ExceptionsTest;
 
 import exceptions.EmptyRestaurantNameException;
 import model.Restaurant;
-import model.RestaurantCollection;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.fail;

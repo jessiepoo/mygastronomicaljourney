@@ -63,7 +63,8 @@ a lagging issue with intellij but it works fine otherwise.)
 
 - All of this can also be done when accessing the "restaurants to try" collection.
 
-## Phase 4 Design Patterns
+
+## Phase 4 Task 2: Design Patterns
 - I have chosen the first option where I design a class that is robust. In the restaurant class, I have chosen
   to make the constructor more robust by throwing a checked exception when an empty string is passed in as an argument.
 - I had to create a try and catch statement in: 
@@ -74,6 +75,17 @@ a lagging issue with intellij but it works fine otherwise.)
       - the "runBefore" method in the WriterTest class
       - the "runBefore" method in the RestaurantTest class
 - I made a test class for that exception and included tests for empty and non empty restaurant names.
+
+
+## Phase 4 Task 3: Code Analysis
+- Right now, I have methods for both the "tried" and "to-try" restaurant collection  methods and fields in 
+  the same class, the "restaurantCollection" class. There is very low cohesion because of this. As a result,
+  I decided to create an interface for the collections called RestaurantCollections and created 2 different 
+  subclasses ("TriedCollection" and "ToTryCollection") that implement that interface so that the execution can be
+  handled by 2 different classes and eliminate the cohesion. I also had to change the write method in the Writer
+  class and create 2 instances of restaurantcollections (Tried and ToTry) to the RestaurantCollectionApp class.
+  
+  
       
   
 
