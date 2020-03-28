@@ -1,4 +1,4 @@
-package ui;
+package model;
 
 import sun.audio.AudioData;
 import sun.audio.AudioPlayer;

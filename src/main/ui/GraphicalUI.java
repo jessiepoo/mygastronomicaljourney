@@ -435,7 +435,8 @@ public class GraphicalUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panel.setVisible(false);
-                displaySortedServiceRestaurants(jframe, myApp.tried.getSorter().sortByService(myApp.tried.restaurantList));
+                displaySortedServiceRestaurants(jframe, myApp.tried.getSorter()
+                        .sortByService(myApp.tried.restaurantList));
             }
         });
     }
@@ -465,7 +466,8 @@ public class GraphicalUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panel.setVisible(false);
-                displaySortedOverallRestaurants(jframe, myApp.tried.getSorter().sortByOverall(myApp.tried.restaurantList));
+                displaySortedOverallRestaurants(jframe, myApp.tried.getSorter()
+                        .sortByOverall(myApp.tried.restaurantList));
             }
         });
     }
@@ -912,8 +914,8 @@ public class GraphicalUI {
             public void actionPerformed(ActionEvent e) {
                 mainPanel.setVisible(false);
                 displayChooseFromToTryOptions(jframe);
-
-        }});
+            }
+        });
     }
 
     private void toTryMakeBookingButtonCommand(JList<String> restaurantList, JButton buttonMakeBooking) {
