@@ -57,3 +57,4 @@ public class ToTryCollection implements Saveable, RestaurantCollections {
         }
     }
 }
+
